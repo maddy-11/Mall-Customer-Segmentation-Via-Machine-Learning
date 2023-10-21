@@ -1,0 +1,102 @@
+
+	{% extends 'templates.html' %}
+
+	{% block content %}
+
+{% if messages %}
+	{% for messages in messages %}
+		<div class="{{messages.tags}} pt-3" style="display: flex;justify-content: space-around;" id="hide">
+			<p> {{messages}} </p>
+			<p class="px-1 bg-white text-dark" onclick="myclick()" id="hide" style="cursor: pointer;">X</p>
+			
+
+		</div>
+	{% endfor %}
+{% endif %}
+	
+	<script src="https://kit.fontawesome.com/yourcode.js" crossorigin="anonymous"></script>
+
+	<h1 class="text-center mt-5 text-dark">Employees</h1>
+	<table width="100%" class="table table-striped col-lg-10 m-auto mt-3 ">
+	<tr >
+		<th class="text-dark">Name</th>
+		<th class="text-dark">Email</th>
+		
+		<th class="text-dark">Delete</th>
+	</tr>
+	{% for i in data %}
+	<tr>
+		
+		<td class="text-dark">{{i.user.username}}</td>
+		<td class="text-dark">{{i.user.email}}</td>
+		<td ><a href="del/{{i.user.id}}"><i class="fa fa-trash text-dark" ></i></a></td>
+	</tr>
+	{% endfor %}
+	</table>
+
+<hr>
+	<h1 class="text-center mt-5 text-dark">Customers</h1>
+	<table width="100%" class="table table-striped col-lg-10 m-auto mt-3">
+	<tr>
+		<th class="text-dark">Name</th>
+		<th class="text-dark">Email</th>
+		
+		<th class="text-dark">Delete</th>
+	</tr>
+	{% for i in data1 %}
+	<tr>
+		
+		<td class="text-dark">{{i.user.username}}</td>
+		<td class="text-dark">{{i.user.email}}</td>
+		<td><a href="del/{{i.user.id}}"><i class="fa fa-trash text-dark" ></i></a></td>
+	</tr>
+	{% endfor %}
+
+	</table>
+
+
+<hr>
+	<h1 class="text-center mt-5 text-dark">Users</h1>
+	<table width="100%" class="table table-striped col-lg-10 m-auto mt-3">
+	<tr>
+		<th class="text-dark">Name</th>
+		<th class="text-dark">Email</th>
+		
+		<th class="text-dark">Delete</th>
+	</tr>
+	{% for i in data2 %}
+	<tr>
+		
+		<td class="text-dark">{{i.username}}</td>
+		<td class="text-dark">{{i.email}}</td>
+		<td><a href="del/{{i.id}}"><i class="fa fa-trash text-dark" ></i></a></td>
+	</tr>
+	{% endfor %}
+	
+	</table>
+
+	<style>
+		td,th{
+			text-align: center;
+		}
+		.warning{
+	background: red;
+	color: #fff;
+}
+.success{
+	background: green;
+	color: #fff;
+}
+.hide{
+	visibility: hidden;
+	
+}
+	</style>
+	
+<script type="text/javascript">
+	function myclick() {
+    document.getElementById("hide").className = "hide";
+}
+</script>
+	{% endblock %}
+	

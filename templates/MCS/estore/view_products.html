@@ -1,0 +1,88 @@
+{% extends 'templates.html' %}
+{% load static %}
+{% block title %} View Products {% endblock %}
+{% block content %}
+<div class="container mt-5 bg-light rounded p-1">
+<h1 class="text-center" style="font-family:all">View All Products</h1><hr>
+<table width="100%" class="table table-striped">
+		<thead class="bg-warning">
+		<th>Image</th>	
+		<th>Product</th>
+		<th>Rattings</th>
+		<th>Price</th>
+		<th>Quantity</th>
+		<th class="text-center">Edit</th>
+		<th class="text-center">Delete</th>
+		</thead>
+		<tbody>
+			{% for i in products %}
+			
+			<tr>
+			<td><img src="/static/images/{{i.p_image}}" class = "image"></td>
+			<td>{{i.p_name}}</td>
+				<td><div>
+
+			{% if i.p_rattings == 1 %}
+			{% for x in "a" %}
+				<img src="/static/images/star-icon.png">
+			{% endfor %}
+			{% endif %}
+
+			{% if i.p_rattings == 2 %}
+			{% for x in "aa" %}
+				<img src="/static/images/star-icon.png">
+			{% endfor %}
+			{% endif %}
+			{% if i.p_rattings == 3 %}
+			{% for x in "aaa" %}
+				<img src="/static/images/star-icon.png">
+			{% endfor %}
+			{% endif %}
+
+			{% if i.p_rattings == 4 %}
+			{% for x in "aaaa" %}
+				<img src="/static/images/star-icon.png">
+			{% endfor %}
+			{% endif %}
+
+			{% if i.p_rattings == 5 %}
+			{% for x in "aaaaa" %}
+				<img src="/static/images/star-icon.png">
+			{% endfor %}
+			{% endif %}
+					
+				</div></td>
+				
+				<td>${{i.p_price}}</td>
+
+				<td>{{i.p_quantity}}</td>
+
+				<td class="text-center"> <a href="/panel/edititem/{{i.id}}"><i class="fa fa-edit fs-4 text-dark"></i></a></td>
+
+				<td class="text-center"> <a href="/panel/delproduct/{{i.id}}"><i class="fa fa-trash fs-4 text-dark"></i></a></td>
+
+				</tr>
+				
+				
+				{% endfor %}
+				
+				
+				
+				
+		</tbody>
+
+	</table>
+
+</div>
+
+<style>
+	th,td{
+/*		width:10%;*/
+		padding: 1%;
+	}
+
+	.image{
+		height: 50px;
+	}
+</style>
+{% endblock %}

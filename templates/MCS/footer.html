@@ -1,0 +1,86 @@
+
+{% block content %}
+<div class="container-fluid border-top" style="background: darkred;">
+
+<div class="col-xs-12 col-sm-6 col-md-3 pt-4">
+<div class="row">
+<h5 class="widget-title col-lg-6 text-light">Follow up<span></span></h5>
+<div class="col-lg-6 ">
+            <a href="#"> <i class="fa fa-facebook text-danger text-white"> </i> </a>
+            <a href="#"> <i class="fa fa-twitter text-danger text-white"> </i> </a>
+            <a href="#"> <i class="fa fa-youtube text-danger text-white"> </i> </a>
+            </div>
+</div>
+</div> 
+        <div class="container py-2 " style="font-family: all;">
+    	<div class="row py-3 text-light fs-custom">
+
+    	<div class="col-lg-3 col-md-5 col-5">
+        <div class="widget subscribe no-box">
+        <h5 class="">MCS App<span></span></h5>
+        <p>Our Products are super LUXURY, made from pure material with over 3 years Warranty. No outfit is complete without a our materials to match.  </p>
+        </div>
+        </div>
+
+    	<div class="col-lg-3 col-md-5 col-5">
+    	<h3>Address</h3>
+        <p class="" >No 40 Baria Sreet 15/2 NewYork City, NY, United States.</p>
+    	</div>
+
+
+
+        <div class="col-lg-3 col-md-5 col-5">
+        <div class="widget no-box">
+        <h5 class="widget-title">Quick Links<span></span></h5>
+        <ul class="thumbnail-widget">
+        <li>
+        <div class="thumb-content"><a href="/store">Home</a></div> 
+        </li>
+        <li>
+        <div class="thumb-content"><a href="/store#categories">Categories</a></div> 
+        </li>
+        <li>
+        <div class="thumb-content"><a href="/store/#contact_">Contact</a></div> 
+        </li>
+        <li>
+        <div class="thumb-content"><a href="/store/#about">About</a></div> 
+        </li>
+        <li>
+        <div class="thumb-content"><a href="/panel/">Panel</a></div> 
+        </li>
+
+        </ul>
+        </div>
+        </div>
+
+    	<div class="col-lg-3 col-md-5 col-5">
+    	
+            <h2 class="fs-4 col-lg-12 col-md-12 col-12">Subscribe to Newsletter</h2>
+            <form  method = "POST"  action="/panel/newsletter">
+                {% csrf_token %}
+                <input type="email" class="col-lg-12 col-md-12 col-12 py-2 me-auto ms-auto" placeholder="Enter Your email" name="subscriber" required>
+                <input type="submit"  class="btn btn-outline-warning col-lg-12 col-md-12 col-12 me-auto ms-auto mt-2 " value="Subscribe" >
+                        </form>
+                    
+    	</div>
+
+    	</div>
+    </div>
+    
+</div>
+
+    <div class="container-fluid text-center bg-dark text-white p-3 fs-5 border-top">
+        © 2023 MCS.com | All Rights Reserved.
+    </div> 
+
+
+  <style type="text/css">
+      a{
+        color: #fff;
+      }
+      .thumbnail-widget a{
+        text-decoration: none;
+      }
+  </style>
+{% endblock %}
+

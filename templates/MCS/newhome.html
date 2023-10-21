@@ -1,0 +1,105 @@
+{% extends 'templates.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+<h1 class="text-dark bg-warning border-top border-4 text-center py-3 m-0">MALL CUSTOMER SEGMENTATION</h1>
+<div class="container-fluid border border-dark p-3 ">
+	<h1 class="text-center">Dashboard</h1>
+	<hr>
+	<div class="row" style="justify-content:space-around">
+		<div class="col-lg-3 border bg-red text-center fw-bold  fs-5 p-2">
+			Total Customers
+			<hr>
+			{{context.c}}
+		</div>
+
+		<div class="col-lg-3 border bg-orange text-dark text-center fw-bold fs-5 p-2">
+			Total Products
+			<hr>
+			{{context.p}}
+		</div>
+
+		<div class="col-lg-3 border bg-primary text-white text-center fs-5 fw-bold p-2">
+			Total Vouchers
+			<hr>
+			{{context.v}}
+		</div>
+	</div>
+<hr style="height:10px">
+	<div class="row" style="justify-content:space-around">
+		<div class="col-lg-3 border bg-green text-center fw-bold fs-5 p-2">
+			Total Orders
+			<hr>
+			{{context.o}}
+		</div>
+
+		<div class="col-lg-3 border bg-blue text-center fw-bold fs-5 p-2">
+			Delivered Orders
+			<hr>
+			{{context.do}}
+		</div>
+
+		<div class="col-lg-3 border bg-warning text-center fw-bold fs-5 p-2">
+			Our For Delivery
+			<hr>
+			{{context.dt}}
+		</div>
+
+</div>
+
+<hr style="height:10px">
+	<div class="row" style="justify-content:space-around">
+		
+		<div class="col-lg-11 border border-5 border-primary p-0 rounded">
+			<h2 class="col-l-12 bg-primary text-center text-white  font">Orders</h2>
+			<table class="table table-striped">
+				<thead class="bg-warning">
+					<th>Customer</th>
+					<th>Order ID</th>
+					<th>Product</th>
+					<th>Image</th>
+					<th>Status</th>
+					<th>Delete</th>
+				</thead>
+				<tbody >
+					{% for i in context.order %}	
+					<tr class="border">
+						<td>{{i.u_id.first_name}} {{i.u_id.last_name}}</td>
+						<td>{{i.id}}</td>
+						<td>{{i.p_id.p_name}}</td>
+						<td><img src="/static/images/{{i.p_id.p_image}}" style="width:50px;width: 50px;"></td>
+						<td>{{i.delivery_status}}</td>
+						<td><a href=""><i class="fa fa-trash text-dark fs-4"></i></a></td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	</div>
+<style type="text/css">
+	.bg-red{
+		background-color: #A70D2A;
+		color:#fff;
+	}
+	.bg-orange{
+		background: orange;
+		color: white;
+	}
+	.bg-green{
+		background: green;
+		color: white;
+	}
+	.bg-blue{
+		background: blue;
+		color: white;
+	}
+	.row hr{
+		background: white;
+		height: 3px;
+	}
+</style>
+{% endblock %}

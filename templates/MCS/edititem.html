@@ -1,0 +1,111 @@
+{% extends 'templates.html' %}
+{% block title %}Edit Item{% endblock %}
+
+{% block content %} 
+
+
+
+<div class="container my-5 bg-white card p-3">
+	<h1 class="font my-3">Edit Product</h1>
+	<form method="POST" enctype="multipart/form-data">
+		{% csrf_token %}
+		<p>Name</p>
+		<input type="text" id = 'pn'name="pn" class="m-auto" placeholder="Procut Name" value="{{p.p_name}}" required>
+		<p>Price</p>
+		<input type="text" name="pp" class="m-auto" placeholder="Product Price" required value="{{p.p_price}}" >
+		<div>
+		<p>Description</p>
+         <textarea type="textbox" name="pd" class="m-auto" placeholder="Add Description"  required>{{p.p_desc}}</textarea>
+        </div>
+        <p>Category</p>
+        <div class="dropdown">
+  		<select class="btn btn-warning my-2" name="category" id="dropdown" data-toggle="dropdown" onchange ="clicked()">
+  		<ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+  		<option class="dropdown-item" value=""> Select </option>
+    	<option class="dropdown-item" value="laptops" {% if p.p_cat == 'laptops'%} selected {% endif %}>Laptops</option>
+    	<option class="dropdown-item" value="bags" {% if p.p_cat == 'bags'%} selected {% endif %}>Bags</option>
+    	<option class="dropdown-item" value="jewellary"{% if p.p_cat == 'jewellary'%} selected {% endif %}>Jewellary</option>
+    		
+  		</ul>
+  		</select>
+</div>
+
+		<div id="2drop">
+		</div>
+		<hr>
+		<p>Quantity</p>
+		<input type="number" name="q" max="50" value="{{p.p_quantity}}" class="col-lg-2">
+		<hr>
+		<div>
+		<img src="/static/images/{{p.p_image}}" class="col-lg-2">
+			
+		</div>
+		<p>Change Photo (Optional)</p>
+		<input type="file" name="img" class="m-auto my-2 border" value="abc">
+		<input class="btn btn-warning col-lg-6 me-auto	" value = "Save" type="submit" name="submit" style="display: block; margin: auto; "><br>
+
+
+	</form>
+</div>
+
+<style type="text/css">
+	textarea, input {
+    width: 100%;
+    margin: 5px;
+    padding: 1%;
+    font-size: 18px;
+}
+input[type=radio]{
+/*	width: 10px;*/
+	height: 16px;
+}
+label{
+	font-size: 22px;
+}
+</style>
+<script>
+	 
+
+	var s = '<select class="btn btn-warning my-2 "  name="cat2"  data-toggle="dropdown">'
+	var a = '{% for i in bags %}' + 
+	'<option class="dropdown-item" value="{{ i }}"  {% if i == p.p_cat2 %} selected {% endif %}>{{i}}</option>' + 
+	'{% endfor %}' 
+
+	var b = '{% for i in jewellary %}' + 
+	'<option class="dropdown-item" value="{{i}}" {% if i == p.p_cat2 %} selected {% endif %}>{{i}}</option>' +
+	'{% endfor %}'
+
+	var c = '{% for i in laptops %}' + 
+	'<option class="dropdown-item" value="{{ i }}" {% if i == p.p_cat2 %} selected {% endif %}>{{i}}</option>' +
+	'{% endfor %}'
+
+	var d = '</select>'
+	var x = document.getElementById('2drop')
+	
+	var y = document.getElementById('dropdown').value
+		if (y == "bags")
+		{x.innerHTML = s + a + d}
+		if (y == "jewellary")
+		{x.innerHTML = s + b + d}
+		if (y == "laptops")
+		{x.innerHTML = s + c + d}
+		if (y == "")
+		{x.innerHTML = ''}
+
+	function clicked(){
+	var y = document.getElementById('dropdown').value
+		if (y == "bags")
+		{x.innerHTML = s + a + d}
+		if (y == "jewellary")
+		{x.innerHTML = s + b + d}
+		if (y == "laptops")
+		{x.innerHTML = s + c + d}
+		if (y == "")
+		{x.innerHTML = ''}
+}
+	
+
+
+</script>
+{% endblock %}
+

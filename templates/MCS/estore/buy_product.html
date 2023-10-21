@@ -1,0 +1,190 @@
+{% extends 'estore/templates.html' %}
+{% block title %}{{p.p_name}}{% endblock %}
+
+{% block content %} 
+
+<div class="container-fluid  bg-white p-1">
+  <div class="row my-5 p-1 mx-1">
+
+    <div class="col-lg-5 col-md-5 col-12 border border-warning border-3">
+      <img class="img" src="/static/images/{{p.p_image}}" class="image-fluid m-auto img">
+
+    </div>
+
+    <div class="col-lg-7 col-md-7 col-12 border border-warning border-3 p-3 ">
+      <h2 class="fs-1 font">{{p.p_name}}</h2>
+      {% if p.p_quantity > 0 and p.p_quantity < 11 %}
+      <p>({{p.p_quantity}} Remaining)</p>
+      {% elif p.p_quantity > 0 %}
+      {% else %}
+      <p class="text-danger">(Out of Stock)</p>
+      {% endif %}
+      <div class="my-2 fs-3 text-danger">Price ${{p.p_price}}</div>
+      <h3 class="mt-4 font">Ratings</h3>
+        <div class=" col-lg-5 col-md-4">
+      
+          {% if p.p_rattings == 1 %}
+        {% for x in "a" %}
+          <img src="/static/images/star-icon.png" class="image1">
+        {% endfor %}
+        {% endif %}
+
+        {% if p.p_rattings == 2 %}
+        {% for x in "aa" %}
+          <img src="/static/images/star-icon.png" class="image1">
+        {% endfor %}
+        {% endif %}
+
+        {% if p.p_rattings == 3 %}
+        {% for x in "aaa" %}
+          <img src="/static/images/star-icon.png" class="image1">
+        {% endfor %}
+        {% endif %}
+
+        {% if p.p_rattings == 4 %}
+        {% for x in "aaaa" %}
+          <img src="/static/images/star-icon.png" class="image1">
+        {% endfor %}
+        {% endif %}
+
+        {% if p.p_rattings == 5 %}
+        {% for x in "aaaaa" %}
+          <img src="/static/images/star-icon.png" class="image1">
+        {% endfor %}
+        {% endif %}
+        
+      </div>
+
+      <h3 class="mt-4 font">Product Description</h3>
+      <p class="mt-2 col-lg-11">{{p.p_desc}}</p>
+      <h3 class="mt-4 font">Choose Your Color</h3>
+      <form method="POST" class="row px-2" action="/store/buy/{{p.id}}/">
+        {% csrf_token %}
+        <div  class="col-lg-3 col-md-3 col-4 row align">
+        RED
+        <input type="radio" name="color" value="Red" class="col-lg-6 col-md-6 col-2" checked required>
+        </div>
+        <div  class="col-lg-3 col-md-3 col-4 row align">
+        BLUE
+        <input type="radio" name="color" value="Blue" class="col-lg-6 col-md-6 col-2" required></div>
+        <div  class="col-lg-3 col-md-3 col-4 row align">
+        BLACK
+        <input type="radio" name="color" value="Black" class="col-lg-6 col-md-6 col-2" required></div>
+        <div class="mt-2">
+        <input type="number" name="no_of_items" min="1" class="col-lg-2 col-md-2 col-3 text-center border-dark mt-1" value="1">
+        </div>
+        <input type="submit" class="btn btn-warning border-dark mt-5 col-lg-4 btn-hover" value="Add To Cart" toggle = "tooltip" data-placement="top" title="Add to Cart" name="purchase" {% if p.p_quantity == 0 %} disabled {% endif %} >
+      </form>
+      
+    
+    </div>
+    
+  </div>
+</div>
+
+
+<div class=" my-3 col-lg-12 text-dark" >
+  <div class="border border-warning border-3 p-2">
+  <h3 class=" fs-2 font">Write a Review</h3> 
+<hr>
+{% if request.user.is_authenticated %}
+    <form method="POST" action="/store/reviews/{{p.id}}/">
+  {% csrf_token %}
+      <textarea name="review" placeholder="Write a Review" class="col-lg-8" required style="height:100px"></textarea>
+      <p class="font fs-4">Ratings</p>
+      <input type="number" name="rattings" class="col-lg-1 col-2 " value="5" max="5" min="1">
+      <input type="submit" name="sub" class="btn btn-warning col-lg-6">
+    </form>
+    {% else %}
+    Login To Post a Review
+{% endif %}
+  </div>
+
+</div>
+
+<!-- ///////////////////////////////// -->
+
+<div class="container-fluid p-3">
+
+  <div class="container-fluid col-lg-12 my-4 text-dark border border-3 border-warning">
+    
+    <h3 class="fs-2 font">Ratings and Reviews</h3>
+    
+    {% if r %}
+    {% for i in r %}
+    <div  class="border-top border-2 my-1" width="100%">
+        
+          <div class="row">
+          <div class="col-lg-10 fs-4 font p-1">{{i.r_name}}</div>
+          <a href="#" class="btn fs-4 col-lg-1 m-auto"><i class="fa fa-trash"></i></a>
+          </div>
+        
+      <div class="col-lg-2 col-md-4 ">
+        
+          {% if i.rattings == 1 %}
+        }
+        {% for x in "a" %}
+          <img src="/static/images/star-icon.png" class="image">
+        {% endfor %}
+        {% endif %}
+
+        {% if i.rattings == 2 %}
+        {% for x in "aa" %}
+          <img src="/static/images/star-icon.png" class="image">
+        {% endfor %}
+        {% endif %}
+
+        {% if i.rattings == 3 %}
+        {% for x in "aaa" %}
+          <img src="/static/images/star-icon.png" class="image">
+        {% endfor %}
+        {% endif %}
+
+        {% if i.rattings == 4 %}
+        {% for x in "aaaa" %}
+          <img src="/static/images/star-icon.png" class="image">
+        {% endfor %}
+        {% endif %}
+
+        {% if i.rattings == 5 %}
+        {% for x in "aaaaa" %}
+          <img src="/static/images/star-icon.png" class="image">
+        {% endfor %}
+        {% endif %}
+
+      </div>
+
+         <hr>
+          <div class="text-dark"><p class="mt-2 col-lg-12">{{i.review}}</p></div>
+      <hr style="height:10px">
+    </div>
+    {% endfor %}
+     {% else %}
+        <p class="border border-secondary p-2">Be the First to Post Review</p>
+       {% endif %}
+    </div>  
+</div>
+<style type="text/css">
+  .row img{
+    width: 70%;
+  }
+  
+        .align{
+          align-items: center;
+        }
+      
+        .btn-hover:hover{
+          background: white;
+          color: black;
+        }
+
+        img.image{
+          width:8%;
+        }
+        img.image1{
+          width:7%;
+        }
+
+        
+</style>
+{% endblock %}

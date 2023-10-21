@@ -1,0 +1,90 @@
+{% extends 'templates.html' %}
+{% load static %}
+
+
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+	function myclick() {
+    document.getElementById("hide").className = "hide pt-3";
+}
+</script>
+
+
+
+{% if messages %}
+	{% for messages in messages %}
+		<div class="{{messages.tags}} pt-3" style="display: flex;justify-content: space-around;" id="hide">
+			<p>{% if request.user.is_authenticated %}{{request.user.first_name}} is {%endif%} {{messages}} </p>
+			<p class="px-1 bg-white text-dark" onclick="myclick()" id="hide" style="cursor: pointer;">X</p>
+			
+
+		</div>
+	{% endfor %}
+{% endif %}
+
+<div class = "bg-light m-auto my-5 col-lg-8 p-5 row">
+
+<div class="border border-1 border-dark p-5 col-lg-6">
+<h2 class="text-center MT-5">Welcome!</h2>
+<p class = "text-center">Click on the Register Button Below to Create a New Account</p>
+<a href = "/panel/register" class="sign-in-btn px-4 py-1 m-auto row col-lg-6 text-center mb-5 mt-4">Register</a>
+</div>
+
+
+<div class="border border-1 border-dark py-5 col-lg-6 ">
+<div class = "m-auto col-lg-8 mt-5 ">
+<h3>Create Account</h3>
+<div></div>
+<form method="post" action="login">
+	{% csrf_token %}
+
+<input type = "text" placeholder= "Username" class = "ps-2 border border1 border-dark txt-input col-lg-12" name="user"  />
+<input type = "password" placeholder= "Password" class = "ps-2 border border1 border-dark txt-input col-lg-12" name="pass" />
+<input type = "submit" class = "sign-in-btn px-5 py-1 m-auto row col-lg-6 text-center border-none my-2" value="Login"/>
+</form>
+
+</div>
+</div>
+
+</div>
+
+<style>
+.sign-in-btn{
+background:#00326a;
+color:white;
+text-decoration:none;
+border-radius:30px;
+justify-content:center;
+}
+.sign-in-btn:hover{
+	text-decoration: none;
+	color:#fff;
+	background: #204d80;
+}
+
+.border-none{
+border:none;
+
+}
+
+.txt-input{
+margin-top:8px
+}
+.success{
+	background: green;
+	color: #fff;
+}
+.warning{
+	background: red;
+	color: #fff;
+}
+.hide{
+	visibility: hidden;
+	
+}
+</style>
+
+{% endblock %}

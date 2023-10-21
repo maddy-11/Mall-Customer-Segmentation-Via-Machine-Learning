@@ -1,0 +1,243 @@
+{% extends 'estore/templates.html' %}
+
+{% block title %}Categories{% endblock %}
+
+{% block content %} 
+
+  <div class="container-fluid p-3 text-dark">
+
+    <h1 class="fs-1 text-center container p-4 text-dark">New Arrivals</h1>
+    <p class="fs-3 text-center col-lg-8 container text-dark">We have recently launched the new season stuff. You can find the perfect stuff for your below</p>
+    <hr class="mt-5" style="height: 10px;">
+  </div>
+
+  <div class=" container-fluid bg-light border-bottom p-2 row" style="justify-content:space-around">
+    
+{% for i in x %}
+      {% if i.p_cat == "laptops"%}
+    <div class="col-lg-4 col-md-5 col-11 p-3">
+      
+      <div style="text-align: center;" class="border p-2 bg-white shadow">
+        <img src="/static/images/{{i.p_image}}" class="col-12 col-lg-11 col-md-10 ">
+      <div>
+        <a href="/store/buy/{{i.id}}/" class="btn btn-warning col-lg-8 col-md-8 col-11 mt-auto p-2">
+          {{i.p_name}}
+        </a>
+          <span class="col-lg-2 p-2 btn btn-dark m-auto">${{i.p_price}}</span>
+      </div>
+</div>
+       </div>
+    {% endif %}
+    {% endfor %} 
+
+{% if cat == "bags"  %}
+    <h2 class="font text-center">Laptop Bags</h2>
+    <hr>
+    {% for i in x %}
+      {% if i.p_cat2 == "Laptop Bags" %}
+    <div class="col-lg-4 col-md-5 col-11 p-3 ">
+      
+      <div style="text-align: center;" class="border p-2 bg-white">
+        <img src="/static/images/{{i.p_image}}" class="col-12 col-lg-11 col-md-10 img">
+      <div class="mt-1">
+        <a href="/store/buy/{{i.id}}/" class="btn btn-warning col-lg-8 col-md-8 col-11 mt-auto p-2">
+          {{i.p_name}}
+        </a>
+          <span class="col-lg-2 p-2 btn btn-dark m-auto">${{i.p_price}}</span>
+      </div>
+</div>
+       </div>
+       {% endif %}
+       
+       {% endfor %}
+
+       
+<hr style="height: 10px;">
+<h2 class="font text-center">Purses</h2>
+<hr>
+       {% for i in x %}
+      
+             {% if i.p_cat2 == "Purses" %}
+    <div class="col-lg-4 col-md-5 col-11 p-3 ">
+      
+      <div style="text-align: center;" class="border p-2 bg-white">
+        <img src="/static/images/{{i.p_image}}" class="col-12 col-lg-11 col-md-10 img_women">
+      <div class="mt-1">
+        <a href="/store/buy/{{i.id}}/" class="btn btn-warning col-lg-8 col-md-8 col-11 mt-auto p-2">
+          {{i.p_name}}
+        </a>
+          <span class="col-lg-2 p-2 btn btn-dark m-auto">${{i.p_price}}</span>
+      </div>
+</div>
+       </div>
+       {% endif %}{% endfor %}
+
+<hr style="height: 10px;">
+<h2 class="font text-center">Hiking Bags</h2>
+<hr>
+      {% for i in x %}
+      {% if i.p_cat2 == "Hiking Bags" %}
+    <div class="col-lg-4 col-md-5 col-11 p-3 ">
+      
+      <div style="text-align: center;" class="border p-2 bg-white">
+        <img src="/static/images/{{i.p_image}}" class="col-12 col-lg-11 col-md-10 img">
+      <div class="mt-1">
+        <a href="/store/buy/{{i.id}}/" class="btn btn-warning col-lg-8 col-md-8 col-11 mt-auto p-2">
+          {{i.p_name}}
+        </a>
+          <span class="col-lg-2 p-2 btn btn-dark m-auto">${{i.p_price}}</span>
+      </div>
+</div>
+       </div>
+       {% endif %}
+
+    
+    {% endfor %}
+{% endif %}
+
+
+{% if cat == "jewellary"  %}
+    <h2 class="font text-center">Rings</h2>
+    <hr>
+    {% for i in x %}
+      {% if i.p_cat2 == "Rings" %}
+    <div class="col-lg-4 col-md-5 col-11 p-3 ">
+      
+      <div style="text-align: center;" class="border p-2 bg-white">
+        <img src="/static/images/{{i.p_image}}" class="col-12 col-lg-11 col-md-10 img_j">
+      <div class="mt-1">
+        <a href="/store/buy/{{i.id}}/" class="btn btn-warning col-lg-8 col-md-8 col-11 mt-auto p-2">
+          {{i.p_name}}
+        </a>
+          <span class="col-lg-2 p-2 btn btn-dark m-auto">${{i.p_price}}</span>
+      </div>
+</div>
+       </div>
+       {% endif %}
+       
+       {% endfor %}
+
+       
+<hr style="height: 10px;">
+<h2 class="font text-center">Earings</h2>
+<hr>
+       {% for i in x %}
+      
+             {% if i.p_cat2 == "Earings" %}
+    <div class="col-lg-4 col-md-5 col-11 p-3 ">
+      
+      <div style="text-align: center;" class="border p-2 bg-white">
+        <img src="/static/images/{{i.p_image}}" class="col-12 col-lg-11 col-md-10 img_j">
+      <div class="mt-1">
+        <a href="/store/buy/{{i.id}}/" class="btn btn-warning col-lg-8 col-md-8 col-11 mt-auto p-2">
+          {{i.p_name}}
+        </a>
+          <span class="col-lg-2 p-2 btn btn-dark m-auto">${{i.p_price}}</span>
+      </div>
+</div>
+       </div>
+       {% endif %}{% endfor %}
+
+<hr style="height: 10px;">
+<h2 class="font text-center">Pendants</h2>
+<hr>
+      {% for i in x %}
+      {% if i.p_cat2 == "Pendants" %}
+    <div class="col-lg-4 col-md-5 col-11 p-3 ">
+      
+      <div style="text-align: center;" class="border p-2 bg-white">
+        <img src="/static/images/{{i.p_image}}" class="col-12 col-lg-11 col-md-10 ">
+      <div class="mt-1">
+        <a href="/store/buy/{{i.id}}/" class="btn btn-warning col-lg-8 col-md-8 col-11 mt-auto p-2">
+          {{i.p_name}}
+        </a>
+          <span class="col-lg-2 p-2 btn btn-dark m-auto">${{i.p_price}}</span>
+      </div>
+</div>
+       </div>
+       {% endif %}
+
+    
+    {% endfor %}
+{% endif %}
+
+
+  </div>
+ 
+
+</div>
+</div>
+    <!-- --------------------------------- -->
+ 
+      <style type="text/css">
+        .middle{
+          justify-content: space-around;
+        }
+        .bbody{
+          background: #F4F4F4;
+        }
+        .img{
+          
+          height: 500px;
+        }
+        .img_women{
+/*          width: 410px;*/
+          height: 250px;
+        }
+        .img_j{
+          
+          height: 300px;
+        }
+        .space-between{
+          justify-content: space-between;
+          flex-wrap: wrap;
+        }
+        .col-custom{
+          width: 350px;
+          margin: 10px;
+          background: white;
+
+
+        }
+        .col-custom-women{
+          height: 300px;
+          width: 300px;
+          margin: 10px
+          border: solid black 1px;
+        }
+        a{
+          text-decoration: none;
+          color: darkcyan;
+        }
+        .btn:hover{
+          background: orange!important;
+        }
+
+@media only screen and (max-width: 830px){
+          .col-custom{
+          height: 250px;
+          width: 200px;
+        }
+
+        }
+@media only screen and (max-width: 1199px){
+          .col-custom{
+          height: 400px;
+          width: 300px;
+        }
+
+        }
+@media only screen and (max-width: 500px){
+    .col-custom{
+          height: 90%;
+          width: 90%;
+        }
+
+    .img_women{
+          width: 100%;
+          
+        }
+  }
+
+      </style>
+      {% endblock %}

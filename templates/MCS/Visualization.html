@@ -1,0 +1,39 @@
+{% extends 'templates.html' %}
+
+{% block content %}
+<div class="row ">
+<div class="col-lg-2 col-md-4 menu my-3 border-right border-3" style="display: flex;justify-content: space-evenly; flex-direction: column;">
+	<a href="/panel/visuals" class="text-center bg-warning border border-dark">Clusters</a>
+	<a href="/panel/gender" class="text-center bg-warning border border-dark">Gender</a>
+	<a href="/panel/spending" class="text-center bg-warning border border-dark">Spending Score</a>
+	<a href="/panel/income" class="text-center bg-warning border border-dark">Annual Income</a>
+	<a href="/panel/reports" class="text-center bg-warning border border-dark">Reports</a>
+	
+</div>
+<div class="col-lg-8 col-md-8 mt-3">
+<img class="bg-dark col-lg-12 col-md-12 col-12" src="data:image/png;base64, {{chart}}" />
+
+
+
+</div>
+</div>
+<hr>
+
+<style>
+	.menu a{
+		text-decoration: none;
+		color: white;
+		padding: 10px;
+		margin-top:10px;
+		border: solid white 1px;
+		color:black;
+		font-weight: bold;
+
+	}
+	.menu a:hover{
+		background: grey;
+		
+	}
+</style>
+{% endblock %}
+

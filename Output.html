@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title></title>
+</head>
+<body>
+<div id="map" style="width:500px;height:500px;"></div>
+
+<script>
+  function initMap() {
+    var myLatLng = {lat: 37.7749, lng: -122.4194};
+
+    var map = new google.maps.Map(document.getElementById('map'), {
+      zoom: 8,
+      center: myLatLng
+    });
+
+    var marker = new google.maps.Marker({
+      position: myLatLng,
+      map: map,
+      title: 'Hello World!'
+    });
+  }
+</script>
+
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCDlSPZ1Qn4a2uu5eKwl96TdltX-49xCjo&callback=initMap">
+</script>
+
+</body>
+</html>

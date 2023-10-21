@@ -1,0 +1,39 @@
+{% extends 'templates.html' %}
+{% block title %}Add Category Items{% endblock %}
+{% block content %}
+
+<div class="container-fluid p-5">
+	<h1 class="text-center">Add Category Items</h1>
+	<hr style="height:10px">
+
+<div class="container">
+<table class="table table-striped">
+				<thead class="bg-warning">
+					<th>Image</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Delete</th>
+				</thead>
+				<tbody>
+			{% for i in data %}
+				<tr>
+				<td><img src="/static/images/{{i.p_image}}" class="image"></td>
+				<td>{{i.p_name}}</td>
+				<td>{{i.p_price}}</td>
+				<td><form method="post" action="/panel/addcategoryitems/{{i.id}}/"> {% csrf_token %} <input type="submit" class="btn btn-warning" value="Add" /></form></td>
+				</tr>
+			
+			{% endfor %}
+		</tbody>
+
+			</table>
+		</div>
+</div>
+
+
+			<style type="text/css">
+		.image{
+			height: 50px;
+		}		
+			</style>
+{% endblock %}

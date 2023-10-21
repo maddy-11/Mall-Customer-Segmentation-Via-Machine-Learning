@@ -1,0 +1,100 @@
+{% extends 'estore/templates.html' %}
+{% block title %}Register{% endblock %}
+
+{% block content %}
+
+<script type="text/javascript">
+	function myclick() {
+    document.getElementById("hide").className = "hide pt-3";
+}
+</script>
+
+
+
+{% if messages %}
+	{% for messages in messages %}
+		<div class="{{messages.tags}} pt-3" style="display: flex;justify-content: space-around;" id="hide">
+			<p>{% if request.user.is_authenticated %}{{request.user}} is {%endif%} {{messages}} </p>
+			<p class="px-1 bg-white text-dark" onclick="myclick()" id="hide" style="cursor: pointer;">X</p>
+			
+
+		</div>
+	{% endfor %}
+{% endif %}
+
+<div class="p-3 text-light border-bottom">
+    <h1 class="text-center">Create an Account</h1>
+</div>
+<form method="POST" class="bg-light container col-lg-4 col-md-8 col-10 p-3 my-5 rounded">
+    {% csrf_token %}
+    <h2>Fill the Form Below</h2>
+    <hr>
+    <label>First Name</label>
+    <input type="text" name="f_name" placeholder="John">
+
+    <label>Last Name</label>
+    <input type="text" name="l_name" placeholder="Doe">
+
+    <label>Email</label>
+    <input type="text" name="email" placeholder="example@example.com">
+
+    <label>Userame</label>
+    <input type="text" name="uname" placeholder="John007">
+
+    <label>Annual Income in $K</label>
+    <input type="text" name="income" placeholder="50" max="100">
+
+    <label>Age</label>
+    <input type="number" name="age" class="col-lg-4 col-md-5 col-8" placeholder="20" max="100">
+
+    <label>Gender</label>
+
+    <label style="display:inline;font-weight: normal;">Male</label>
+    <input type="radio" name="gender" id="male" class="me-5" value="Male">
+
+    <label style="display:inline;font-weight: normal;">Female</label>
+    <input type="radio" name="gender" id="male" class="me-5" value="Female">
+
+    <label>Password</label>
+    <input type="Password" name="pass" placeholder="Password">
+
+    <label>Repeat Password</label>
+    <input type="Password" name="rpass" placeholder="Password">
+
+
+    <input type="submit" name="" class="btn btn-warning mt-2 col-lg-12">
+Already Have an Account? <a href="/store/login" style="color:orangered;text-decoration: none;" >Login</a>
+</form>
+<style>
+	.form-group {
+    margin-bottom: 1rem;
+}
+
+label {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 0.5rem;
+}
+
+input[type="text"],
+input[type="email"],
+     [type=password]{
+    padding: 0.5rem;
+    width: 100%;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+input[type=number]{
+    padding: 0.5rem;
+    font-size: 1rem;
+    box-sizing: border-box;
+}
+.warning{
+    background: red;
+}
+.hide{
+    visibility: hidden;
+}
+</style>
+
+{% endblock %}

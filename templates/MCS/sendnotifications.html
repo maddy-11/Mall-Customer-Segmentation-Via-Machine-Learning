@@ -1,0 +1,39 @@
+{% extends 'templates.html' %}
+{% block title %}Send Notifications{% endblock %}
+
+{% block content %} 
+	<div class="p-5 border-bottom">
+		<h1 class="text-center ">Send Notifications</h1>
+	</div>
+	
+	<div class="container-fluid row text-center my-5">
+		<div class="col-lg-3 border-right border-left border-4 py-5">
+			<a href="/panel/sendnotifications/1" class="btn btn-warning col-lg-10 my-1 {% if cat == 1 %}bg-dark text-light{% endif %}">Category 1</a>
+
+			<a href="/panel/sendnotifications/2" class="btn btn-warning col-lg-10 my-1 {% if cat == 2 %}bg-dark text-light{% endif %}">Category 2</a>
+
+			<a href="/panel/sendnotifications/3" class="btn btn-warning col-lg-10 my-1 {% if cat == 3 %}bg-dark text-light{% endif %}">Category 3</a>
+
+			<a href="/panel/sendnotifications/4" class="btn btn-warning col-lg-10 my-1 {% if cat == 4 %}bg-dark text-light{% endif %}">Category 4</a>
+
+			<a href="/panel/sendnotifications/5" class="btn btn-warning col-lg-10 my-1 {% if cat == 5 %}bg-dark text-light{% endif %}">Category 5</a>
+
+		</div>
+		<div class="col-lg-9 py-3">
+			<h2 class="font">Category : {{cat}}</h2>
+			<hr>
+
+			<form  method="POST" action="/panel/sendnotifications/{{cat}}/" class="h-50">
+
+				{% csrf_token %}
+				<textarea class="col-lg-10 h-100" placeholder="Type Here ..." name="text" required></textarea>
+				<input type="submit" name="" class="btn btn-warning col-lg-6" {% if val == 1 %}disabled{% endif %}>
+			</form>
+
+		</div>
+
+
+	</div>
+{% endblock %}
+
+

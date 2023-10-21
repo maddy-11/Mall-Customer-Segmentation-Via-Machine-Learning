@@ -1,0 +1,61 @@
+{% extends 'templates.html' %}
+{% load static %}
+{% block title %} Report {% endblock %}
+
+{% block content %}
+<h1 class="text-center border-bottom border-2 p-3 text-dark" >Reports</h1>
+<div class="row col-lg-12 col-md-12 col-12">
+<div class=" col-lg-2  menu mt-1 border-right border-3" style="display: flex;flex-direction: column;">
+	<a href="/panel/cluster/0" class="text-center border border-dark bg-warning text-dark">Cluster 1</a>
+	<a href="/panel/cluster/1" class="text-center border border-dark bg-warning text-dark">Cluster 2</a>
+	<a href="/panel/cluster/2" class="text-center border border-dark bg-warning text-dark">Cluster 3</a>
+	<a href="/panel/cluster/3" class="text-center border border-dark bg-warning text-dark">Cluster 4</a>
+	<a href="/panel/cluster/4" class="text-center border border-dark bg-warning text-dark">Cluster 5</a>
+	<a href="/panel/visuals" class="text-center border border-dark bg-warning text-dark">View Clusters </a>
+	</div>
+	<div class="col-lg-8">
+<table class="table table-striped col-lg-12 col-12 col-md-12" >
+		<thead class="text-dark bg-warning ">
+			<tr>
+				<th>ID</th>
+				<th>Gender</th>
+				<th>Age</th>
+				<th>Income</th>
+				<th>Spending Score</th>
+				<th>Cluster</th>
+			</tr>
+		</thead>
+		<tbody class="text-dark">
+			{% for i in report %}
+			<tr >
+				<td class="text-dark">{{i.cust_id}}</td>
+				<td class="text-dark">{{i.gender}}</td>
+				<td class="text-dark">{{i.age}}</td>
+				<td class="text-dark">{{i.income}}</td>
+				<td class="text-dark">{{i.spending_s}}</td>
+				<td class="text-dark">{{ i.cluster|add:1 }}</td>
+			</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+	</div>
+</div>
+
+
+<style>
+	.menu a{
+		text-decoration: none;
+		background: black;
+		color: white;
+		padding: 10px;
+		margin-top:10px;
+		border: solid white 1px;
+
+	}
+	.menu a:hover{
+		background: grey;
+		
+	}
+	.menu a.text-dark{font-weight: bold;}
+</style>
+{% endblock %}

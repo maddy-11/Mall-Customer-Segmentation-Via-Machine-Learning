@@ -1,0 +1,120 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-theme container-fluid  col-lg-12">
+  <div class="container-fluid">
+    <div class="col-lg-5 col-6 col-md-6 navbarbrand mx-2 ">
+      <a href="/store" class=" title1 text-center fs-1 px-2" style="text-decoration: none;">MCS <i class="fa fa-shopping-cart text-warning"></i></a>
+    </div>
+
+    <button class="navbar-toggler p-1 bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <div class="bg-dark menu-item"></div>
+      <div class="menu-item bg-dark mt-1"></div>
+      <div class="menu-item bg-dark mt-1"></div>
+    </button>
+
+    <div class="col-lg-6 collapse navbar-collapse ms-5" id="navbarSupportedContent" >
+      <ul class="navbar-nav mb-2 fs-4 m-auto me-auto" style="text-align:right;">
+        <li class="nav-item active ">
+        <a class="nav-link color-black" style="color:black" href="/store">Home <span class="sr-only">(current)</span></a>
+      </li>
+
+      <li class="nav-item active">
+        <a class="nav-link color-black" href="/store/recommended">Recommended</a>
+      </li>
+
+<li class="nav-item active">
+        <a class="nav-link" href="/store#contact_">Contact</a>
+      </li>
+
+      <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Categories
+          </a>
+          <ul class="dropdown-menu bg-theme fs-5 border border-top-0 border-warning border-2"  aria-labelledby="navbarDropdown" id="drop">
+
+            <li class="">
+              <a class="dropdown-item" href="/store/categories/laptops">Laptops</a>
+            </li>
+            <li><hr></li>
+
+            <li class="">
+              <a class="dropdown-item" href="/store/categories/bags">Bags</a>
+            </li>
+            <li><hr></li>
+
+            <li class="">
+              <a class="dropdown-item" href="/store/categories/jewellary">Jewellary</a>
+            </li>
+            
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle " href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+          <ul class="dropdown-menu bg-theme border border-top-0 border-warning border-2 fs-5 "  aria-labelledby="navbarDropdown" id="drop">
+
+             {% if not request.user.is_authenticated %}
+             <li class="nav-item active">
+              <a class="dropdown-item" href="/store/login">Log In</a>
+            </li>
+            <li><hr></li>
+            <li class="">
+              <a class="dropdown-item" href="/store/register">Register</a>
+            </li>
+
+            {% endif %}
+            {% if  request.user.is_authenticated %}
+            <li class="">
+              <a class="dropdown-item" href="/store/notifications/{{request.user.id}}">Notifications</a>
+            </li>
+            <hr>
+            <li class="">
+              <a class="dropdown-item" href="/store/update">Update Profile</a>
+            </li>
+            <li><hr></li>
+            <li class="">
+              <a class="dropdown-item" href="/panel/logout">Log Out</a>
+            </li>
+
+            {% endif %}
+   
+          </ul>
+        </li>
+{% if request.user.is_authenticated %}
+
+        <li class="nav-item active">
+        
+        <a class="nav-link" href="/store/cart"><i class="fa fa-shopping-cart fs-2" style="color:brown;"></i></a>
+      </li>
+      {% if pn is not None %}
+      <li class="nav-item active">
+        <div class="nav-link">
+      <p class="m-auto rounded-circle bg-danger text-center" style="width:100%">&nbsp;{{pn}}&nbsp;</p></div>
+      {% endif %}
+    </li>
+      
+ {% endif  %}
+      </ul>
+    
+    </div>
+  </div>
+</nav>
+</div>
+<hr style="margin: 0; " class="bg-light">
+<style type="text/css">
+  #drop a{color: red;}
+  #drop .hr{background: red;}
+  .navbar-toggler { background: grey;}
+  .menu-item{ width: 20px; height: 2px; margin: 5px; }
+  .dropdown.nav-link{color: red; }
+  .bg-theme{background: #fae557;border: none;}
+.title1 {color:#fff;background: black;width:150px;padding: 5px; font-family: all}
+.title1:hover{color:black; background: silver}
+.title1 a:hover{text-decoration: none;color: #000}
+.nav-link{background: #FFC107;color: black!important;}
+.nav-link:hover{background: orange;}
+
+
+</style>

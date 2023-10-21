@@ -1,0 +1,135 @@
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-theme container-fluid  ">
+  <div class="container-fluid">
+    <div class="col-lg-6 col-6 col-md-6 navbarbrand mx-2 ">
+      <h1 class="title1 text-center"><a href="/panel" class=" text-center" style="text-decoration: none;">MCS <i class="fa fa-shopping-cart text-warning"></i></i></a></h1>
+    </div>
+
+    <button class="navbar-toggler p-1 bg-light" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <!-- <span class="navbar-toggler-icon"></span> -->
+      <div class="bg-dark menu-item"></div>
+      <div class="menu-item bg-dark mt-1"></div>
+      <div class="menu-item bg-dark mt-1"></div>
+    </button>
+
+    <div class="collapse navbar-collapse ms-5" id="navbarSupportedContent " style="" >
+      <ul class="navbar-nav me-auto mb-2 fs-4 m-auto ">
+<!--         <li class="nav-item active">
+        <a class="nav-link text-dark" href="/panel">Home <span class="sr-only">(current)</span></a>
+      </li> -->
+
+      {% if request.user.is_authenticated %} 
+      <li class="nav-item active">
+        <a class="nav-link text-dark" href="/panel/users">Users</a>
+      </li>
+    
+      <li class="nav-item active ">
+        <a class="nav-link  text-dark" href="/panel/data">Data</a>
+      </li>
+      {% endif %}
+      <li class="nav-item active">
+        <a class="nav-link  text-dark" href="/store/">Store</a>
+      </li>
+
+
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle  text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Products
+          </a>
+          <ul class="dropdown-menu bg-theme fs-5 "  aria-labelledby="navbarDropdown" id="drop">
+            
+            <li>
+              <a class="dropdown-item" href="/panel/viewproducts">View Products</a>
+            </li>
+            <li><hr></li>
+
+            <li>
+              <a class="dropdown-item" href="/panel/addproducts/">Add Products</a>
+            </li>
+            <!-- <li><hr></li> -->
+
+            <!-- <li>
+              <a class="dropdown-item" href="/panel/register">Notifications</a>
+            </li> -->
+
+          </ul>
+        </li>
+
+             
+          <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle  text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Options
+          </a>
+          <ul class="dropdown-menu bg-theme fs-5 "  aria-labelledby="navbarDropdown" id="drop">
+            
+            <li>
+              <a class="dropdown-item" href="/panel/addvouchers">Vouchers</a>
+            </li>
+            <li><hr></li>
+
+            <li>
+              <a class="dropdown-item" href="/panel/viewcategoryitems/">Category Items</a>
+            </li>
+            <li><hr></li>
+
+            <li>
+              <a class="dropdown-item" href="/panel/sendnotifications">Notifications</a>
+            </li>
+
+          </ul>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link active dropdown-toggle  text-dark" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            Profile
+          </a>
+
+          <ul class="dropdown-menu bg-theme fs-5 "  aria-labelledby="navbarDropdown" id="drop">
+
+             {% if request.user.username == "admin" %}
+            <li class="">
+              <a class="dropdown-item" href="/panel/register">Register</a>
+            </li>
+            <li><hr></li>
+            
+            {% endif %}
+            {% if not request.user.is_authenticated %}
+            <li class="nav-item active">
+              <a class="dropdown-item" href="/panel/login">Log In</a>
+            </li>
+            {% endif %}
+            {% if  request.user.is_authenticated %}
+           
+            <li class="">
+              <a class="dropdown-item" href="/panel/logout">Log Out</a>
+            </li>
+
+            {% endif %}
+   
+          </ul>
+        </li>
+
+ 
+      </ul>
+      <!-- <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form> -->
+    </div>
+  </div>
+</nav>
+</div>
+<hr style="margin: 0; " class="bg-light">
+<style type="text/css">
+  #drop a{color: red;}
+  #drop .hr{background: red;}
+  .navbar-toggler { background: grey;}
+  .menu-item{ width: 20px; height: 2px; margin: 5px; }
+  .dropdown.nav-link{color: red; }
+  .bg-theme{background: #fae557;border: none;}
+.title1 {color:#fff;background: black;width:150px;padding: 5px;}
+.title1:hover{color:white; background: silver}
+.title1 a:hover{text-decoration: none;color: #000}
+.nav-link{background: #FFC107;}
+.nav-link:hover{background: orange;color: #fff;}
+</style>

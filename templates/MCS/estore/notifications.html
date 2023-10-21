@@ -1,0 +1,35 @@
+{% extends 'estore/templates.html' %}
+{% block title %} Notifications {% endblock %}
+{% block content %}
+	
+	<div class="containerm-auto my-2 " >
+		
+			<h2 class="m-auto text-center">Notifications</h2>
+			<hr>
+
+			<div class="m-auto col-lg-6 border p-1" style="min-height: 300px;height: auto;">
+			{% if not data %}
+				
+				<p class="fontt border p-2">
+					No Notifications
+				</p>
+				
+			{% else %}
+			<div >
+			{% for i in data %}
+				
+				<p>{{ i.date|date:"F d, Y H:i:s" }}</p>
+				<p class="fontt  p-1">
+					{{ i.message | linebreaksbr }}
+				</p>
+				<hr>
+
+			{% endfor %}
+			</div>
+			{% endif %}
+
+		</div>
+		
+	
+
+{% endblock %}

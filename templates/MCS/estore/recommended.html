@@ -1,0 +1,67 @@
+{% extends 'estore/templates.html' %}
+
+{% block title %}Recommendations{% endblock %}
+
+{% block content %}
+	<div class="container-fluid bg-white mb-5">
+		<div class="p-5">
+			<h1 class="text-center ">You May Like</h1>
+		</div>
+		
+<hr style="height:10px">
+		<div class="row  text-center ">
+			<h2>Laptops</h2><hr>
+
+			{% for i in data %}
+			{% if i.p_cat == "laptops" %}
+			<div class="col-lg-4 col-md-5 col-11 border border-3 my-1 p-3 m-auto shadow">
+				<img src="/static/images/{{i.p_image}}" class="img">
+				<hr >
+				<div class="row" style="justify-content:space-evenly">
+				<a href="/store/buy/{{i.id}}/" class="col-lg-6 btn btn-warning">{{i.p_name}}</a>
+				<span class="col-lg-2 p-2 btn btn-dark">${{i.p_price}}</span></div>
+			</div>
+			{% endif %}
+			{% endfor %}
+<hr style="height:10px">
+			<h2>Bags</h2><hr>
+
+			{% for i in data %}
+			{% if i.p_cat == "bags" %}
+			<div class="col-lg-4 col-md-5 col-11 border border-3 my-1 p-3 m-auto shadow">
+				<img src="/static/images/{{i.p_image}}" class="img">
+				<hr>
+				<div class="row" style="justify-content:space-evenly">
+				<a href="/store/buy/{{i.id}}/" class="col-lg-6 btn btn-warning">{{i.p_name}}</a>
+				<span class="col-lg-2 p-2 btn btn-dark">${{i.p_price}}</span></div>
+
+			</div>
+			{% endif %}
+			{% endfor %}
+<hr style="height:10px">
+			<h2>Jewellary</h2><hr>
+
+			{% for i in data %}
+			{% if i.p_cat == "jewellary" %}
+			<div class="col-lg-4 col-md-5 col-11 border border-3 my-1 p-3 m-auto shadow">
+				<img src="/static/images/{{i.p_image}}" class="img">
+				<hr >
+				<div class="row" style="justify-content:space-evenly">
+				<a href="/store/buy/{{i.id}}/" class="col-lg-6 btn btn-warning">{{i.p_name}}</a>
+				<span class="col-lg-2 p-2 btn btn-dark">${{i.p_price}}</span></div>
+
+			</div>
+			{% endif %}
+			{% endfor %}
+			
+		</div>
+
+	</div>
+	<style type="text/css">
+		a{text-decoration: none;}
+		a:hover{text-decoration: none;}
+		.img{width: 300px;height: 300px}
+		
+	</style>
+{% endblock %}
+

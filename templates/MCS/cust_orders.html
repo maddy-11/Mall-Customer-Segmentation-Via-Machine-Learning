@@ -1,0 +1,52 @@
+{% extends 'templates.html' %}
+
+{% block title %}Customer Orders{% endblock %}
+
+{% block content %}
+
+ 
+    
+    <div class="col-lg-12 border border-5 border-primary p-0 rounded bg-light">
+      <h2 class="col-l-12 bg-primary text-center text-white  font" id="orders">Customer Orders</h2>
+      <table class="table table-striped">
+        <thead class="bg-warning">
+          <th>Customer</th>
+          <th>Order ID</th>
+          <th>Product</th>
+          <th>Image</th>
+          <th>Status</th>
+          <th>Set as Delivered</th>
+          <th>Delete</th>
+        </thead>
+        <tbody >
+          {% for i in order %}  
+          
+          <tr class="border">
+            <td>{{i.u_id.first_name}} {{i.u_id.last_name}}</td>
+            <td>{{i.id}}</td>
+            <td>{{i.p_id.p_name}}</td>
+            <td><img src="/static/images/{{i.p_id.p_image}}" style="width:50px;width: 50px;"></td>
+            <td>{{i.delivery_status}}</td>
+            <td>{% if i.delivery_status == "Delivered" or i.delivery_status == 'Order Pending' %}<span class="btn border border-dark">Delivered</span>{% else %}<a href="/panel/delivered/{{i.id}}/" class="btn btn-warning"  >Delivered</a>{% endif %}</td>
+            <td><a href="/panel/del_order/{{i.id}}/"><i class="fa fa-trash text-dark fs-4"></i></a></td>
+          </tr>
+          {% endfor %}
+
+          {% for i in order3 %}  
+          <tr class="border">
+            <td>{{i.u_id.first_name}} {{i.u_id.last_name}}</td>
+            <td>{{i.id}}</td>
+            <td>{{i.p_id.p_name}}</td>
+            <td><img src="/static/images/{{i.p_id.p_image}}" style="width:50px;width: 50px;"></td>
+            <td>{{i.delivery_status}}</td>
+            <td>{% if i.delivery_status == "Delivered" or i.delivery_status == 'Order Pending' %}<span class="btn border border-dark">Delivered</span>{% else %}<a href="/panel/delivered/{{i.id}}/" class="btn btn-warning"  >Delivered</a>{% endif %}</td>
+            <td><a href="/panel/del_order/{{i.id}}/"><i class="fa fa-trash text-dark fs-4"></i></a></td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  
+
+{% endblock %}

@@ -1,0 +1,182 @@
+{% extends 'templates.html' %}
+{% load static %}
+{% block title %} Home {% endblock %}
+
+
+{% block content %}
+
+<div class="bac bg-light">          
+<!-- <h1 class="text-dark bg-warning border-top border-4 text-center py-3 m-0">MALL CUSTOMER SEGMENTATION</h1>
+<div class="mt-0" style="height:100px">
+  <h2 class="text-center bg-dark text-white p-3">Welcome {{request.user.first_name}}</h2>
+</div>
+<div class=" m-auto p-5 menu mt-3 mb-5" style="display:flex;flex-direction:column">
+<a class="btn btn-warning fw-bold col-lg-6 col-md-8 col-10" href="/panel/register">Regsiter A New User</a>
+<a class="btn btn-warning fw-bold col-lg-6 col-md-8 col-10" href="/panel/users">View Users</a>
+<a class="btn btn-warning fw-bold col-lg-6 col-md-8 col-10" href="/panel/data">View Clusters</a>
+<a class="btn btn-warning fw-bold col-lg-6 col-md-8 col-10" href="/panel/dataset">Add a Dataset</a>
+
+</div>
+<div style="height:100px"></div> -->
+
+<h1 class="text-dark bg-warning border-top border-4 text-center py-3 m-0">MALL CUSTOMER SEGMENTATION</h1>
+<div class="container-fluid border border-dark p-3 ">
+  <h1 class="text-center bg-dark text-white font p-2">Dashboard</h1>
+  <hr>
+  <div class="row" style="justify-content:space-around">
+    <div class="col-lg-2 border bg-grey text-white text-center fw-bold  fs-5 p-2 py-5 rounded border border-dark border-2">
+      Total Customers
+      <hr>
+      {{context.c}}
+    </div>
+
+    <div class="col-lg-2 border bg-orange text-dark text-center fw-bold fs-5 p-2 py-5 rounded">
+      Total Products
+      <hr>
+      {{context.p}}
+    </div>
+
+    <div class="col-lg-2 border bg-primary text-white text-center fs-5 fw-bold p-2 py-5 rounded">
+      Total Vouchers
+      <hr>
+      {{context.v}}
+    </div>
+  </div>
+<hr style="height:10px">
+  <div class="row" style="justify-content:space-around">
+    <div class="col-lg-2 border bg-blue text-center fw-bold fs-5 p-2  py-5 rounded">
+      Total Orders
+      <hr>
+      {{context.o}}
+    </div>
+
+    <div class="col-lg-2 border bg-dark text-center text-white fw-bold fs-5 p-2 py-5 rounded">
+      Delivered Orders
+      <hr>
+      {{context.do}}
+    </div>
+
+    <div class="col-lg-2 border bg-warning text-center fw-bold fs-5 p-2 py-5 rounded">
+      Out For Delivery
+      <hr>
+      {{context.dt}}
+    </div>
+
+</div>
+
+<hr style="height:10px">
+  <div class="row" style="justify-content:space-around">
+    
+    <div class="col-lg-11 border border-5 border-primary p-0 rounded bg-light">
+      <h2 class="col-l-12 bg-primary text-center text-white  font" id="orders">Orders</h2>
+      <table class="table table-striped">
+        <thead class="bg-warning">
+          <th>Customer</th>
+          <th>Order ID</th>
+          <th>Product</th>
+          <th>Image</th>
+          <th>Status</th>
+          <th>Set as Delivered</th>
+          <th>Delete</th>
+        </thead>
+        <tbody >
+          {% for i in context.order %}  
+          
+          <tr class="border">
+            <td><a href="/panel/customer_orders/{{i.u_id.id}}">{{i.u_id.first_name}} {{i.u_id.last_name}}</a></td>
+            <td>{{i.id}}</td>
+            <td>{{i.p_id.p_name}}</td>
+            <td><img src="/static/images/{{i.p_id.p_image}}" style="width:50px;width: 50px;"></td>
+            <td>{{i.delivery_status}}</td>
+            <td>{% if i.delivery_status == "Delivered" or i.delivery_status == 'Order Pending' %}<span class="btn border border-dark">Delivered</span>{% else %}<a href="/panel/delivered/{{i.id}}/" class="btn btn-warning"  >Delivered</a>{% endif %}</td>
+            <td><a href="/panel/del_order/{{i.id}}/"><i class="fa fa-trash text-dark fs-4"></i></a></td>
+          </tr>
+          {% endfor %}
+
+          {% for i in context.order3 %}  
+          <tr class="border">
+            <td><a href="/panel/customer_orders/{{i.u_id.id}}">{{i.u_id.first_name}} {{i.u_id.last_name}}</a></td>
+            <td>{{i.id}}</td>
+            <td>{{i.p_id.p_name}}</td>
+            <td><img src="/static/images/{{i.p_id.p_image}}" style="width:50px;width: 50px;"></td>
+            <td>{{i.delivery_status}}</td>
+            <td>{% if i.delivery_status == "Delivered" or i.delivery_status == 'Order Pending' %}<span class="btn border border-dark">Delivered</span>{% else %}<a href="/panel/delivered/{{i.id}}/" class="btn btn-warning"  >Delivered</a>{% endif %}</td>
+            <td><a href="/panel/del_order/{{i.id}}/"><i class="fa fa-trash text-dark fs-4"></i></a></td>
+          </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  </div>
+  <div style="height:100px"></div> 
+ </div>
+<style type="text/css">
+  .bg-red{
+    background-color: #A70D2A;
+    color:#fff;
+  }
+  .bg-orange{
+    background: orange;
+    color: white;
+  }
+  .bg-grey{
+    background: grey;
+    color: black;
+  }
+  .bg-blue{
+    background: darkblue;
+    color: white;
+  }
+  .row hr{
+    background: white;
+    height: 3px;
+  }
+
+  .menu a{
+    width: 500px;
+    height: 60px;
+    text-decoration: none;
+    padding: 10px;
+    padding-top: 15px;
+    margin:auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    text-align: center;
+    border: solid orangered;
+  }
+    a{
+      text-decoration: none;
+      color: darkred!important;
+      
+    }
+   .menu a:hover{
+    background: white;
+    color: black;
+    text-decoration: none;
+   }
+  
+  .back{
+  background-image: url("{% static 'images/mall.jpeg' %}");
+  background-color: rgba(0,0,0,.9);
+  background-blend-mode:multiply ;
+  width: 100%;
+  height: auto;
+  background-repeat: no-repeat;
+  background-size: cover;
+  }
+  .bg-pink{
+    background: lightpink;
+  }
+ 
+</style>
+{% endblock %}
+
+
+
+
+
+
+

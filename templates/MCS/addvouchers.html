@@ -1,0 +1,70 @@
+{% extends 'templates.html' %}
+{% block title %}Create Vouchers{% endblock %}
+
+{% block content %} 
+<script type="text/javascript">
+	var a = "<hr><h2>Add Voucher</h2><hr>"
+	var b = '<form method = "POST" action = "/panel/addvouchers/{{cat}}/"> {% csrf_token %}'
+	var c = "<input type = 'text' class = 'border border-warning p-1 m-auto' placeholder = 'abc123' name = 'voucher' required /> "
+	var d = "<input type = 'number' name = 'p_age' class = 'border border-warning p-1 m-auto' placeholder = '20' /><br>"
+	var e = "<input type = 'submit' class= 'btn btn-warning m-auto my-1' />"
+	function clickfunc() {
+	document.getElementById("add").innerHTML = a + b +c + d + e
+}
+</script>
+
+	<div class="p-5 border-bottom">
+		<h1 class="text-center ">Create Vouchers</h1>
+	</div>
+	
+	<div class="container-fluid row text-center my-5">
+		<div class="col-lg-3 border-right border-left border-4 py-5">
+			<a href="/panel/addvouchers/1" class="btn btn-warning col-lg-10 my-1 {% if cat == 1 %}bg-dark text-light{% endif %}">Category 1</a>
+
+			<a href="/panel/addvouchers/2" class="btn btn-warning col-lg-10 my-1 {% if cat == 2 %}bg-dark text-light{% endif %}">Category 2</a>
+
+			<a href="/panel/addvouchers/3" class="btn btn-warning col-lg-10 my-1 {% if cat == 3 %}bg-dark text-light{% endif %}">Category 3</a>
+
+			<a href="/panel/addvouchers/4" class="btn btn-warning col-lg-10 my-1 {% if cat == 4 %}bg-dark text-light{% endif %}">Category 4</a>
+
+			<a href="/panel/addvouchers/5" class="btn btn-warning col-lg-10 my-1 {% if cat == 5 %}bg-dark text-light{% endif %}">Category 5</a>
+
+		</div>
+		<div class="col-lg-9 ">
+			<div class="row">
+			<h2 class="font col-lg-8">Category : {{cat}}</h2>
+			<button onclick="clickfunc()" class="btn btn-warning m-auto col-lg-2">Add Voucher</button>
+		</div>
+			
+			<hr>
+
+			<table class="table table-striped">
+				<thead class="bg-warning">
+					<th>Voucher</th>
+					<th>Discount</th>
+					<th>Delete</th>
+				</thead>
+				<tbody>
+			{% for i in data %}
+				<tr>
+				<td>{{i.voucher}}</td>
+				<td>{{i.percentage}}%</td>
+				<td><a href="/panel/delvoucher/{{i.voucher}}"><i class="fa fa-trash text-dark"></i></a></td>
+				</tr>
+			
+			{% endfor %}
+		</tbody>
+			</table>
+
+		</div>
+
+		<div id="add" >
+
+		</div>
+	</div>
+	
+	
+
+{% endblock %}
+
+

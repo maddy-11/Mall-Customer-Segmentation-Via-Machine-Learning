@@ -1,0 +1,20 @@
+{% extends 'templates.html' %}
+
+{% block content %}
+	<form method="post" action="/panel/csv_file" enctype="multipart/form-data" class="border border-dark m-auto form mt-5 p-5 bg-light col-lg-6" style="display:block; justify-content: center;">
+		
+		{% csrf_token %}
+
+		<input type="file" name="file" class="m-auto"><br>
+		<input type="submit" name="btn" class="mt-2">
+	</form>
+	
+	
+
+	
+
+	
+
+	</table>
+		
+{% endblock %}

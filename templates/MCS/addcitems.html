@@ -1,0 +1,60 @@
+{% extends 'templates.html' %}
+{% block title %}Set Category Items{% endblock %}
+{% block content %}
+<div class="container-fluid p-5">
+	<h1 class="text-center">Set Category Items</h1>
+	<hr style="height:10px">
+
+
+	<div class="container-fluid row text-center my-5">
+		<div class="col-lg-3 border-right border-left border-4 py-5">
+			<a href="/panel/viewcategoryitems/1" class="btn btn-warning col-lg-10 my-1 {% if cat == 1 %}bg-dark text-light{% endif %}">Category 1</a>
+
+			<a href="/panel/viewcategoryitems/2" class="btn btn-warning col-lg-10 my-1 {% if cat == 2 %}bg-dark text-light{% endif %}">Category 2</a>
+
+			<a href="/panel/viewcategoryitems/3" class="btn btn-warning col-lg-10 my-1 {% if cat == 3 %}bg-dark text-light{% endif %}">Category 3</a>
+
+			<a href="/panel/viewcategoryitems/4" class="btn btn-warning col-lg-10 my-1 {% if cat == 4 %}bg-dark text-light{% endif %}">Category 4</a>
+
+			<a href="/panel/viewcategoryitems/5" class="btn btn-warning col-lg-10 my-1 {% if cat == 5 %}bg-dark text-light{% endif %}">Category 5</a>
+
+		</div>
+		<div class="col-lg-9 ">
+			<div class="row">
+			<h2 class="font col-lg-8">Category : {{cat}}</h2>
+			<a href="/panel/addcategoryitems/{{cat}}/" class="btn btn-warning m-auto col-lg-2">Add Item</a>
+		</div>
+			<hr>
+			<table class="table table-striped">
+				<thead class="bg-warning">
+					<th>Image</th>
+					<th>Name</th>
+					<th>Price</th>
+					<th>Delete</th>
+				</thead>
+				<tbody>
+			{% for i in data %}
+				<tr>
+				<td><img src="/static/images/{{i.p_image}}" class="image"></td>
+				<td>{{i.p_name}}</td>
+				<td>{{i.p_price}}</td>
+				<td><a href="/panel/delcategoryitems/{{i.p_name}}"><i class="fa fa-trash text-dark"></i></a></td>
+				</tr>
+			
+			{% endfor %}
+		</tbody>
+			</table>
+
+		</div>
+
+
+	</div>
+
+
+</div>
+<style type="text/css">
+.image{
+		height: 50px;
+	}
+</style>
+{% endblock %}

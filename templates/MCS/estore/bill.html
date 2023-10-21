@@ -1,0 +1,47 @@
+{% extends 'estore/templates.html' %}
+{% block title %}Product{% endblock %}
+
+{% block content %} 
+
+
+    <div class="container my-5 bg-light p-0">
+        <h1 class="font text-center">Invoice</h1>
+    <table class="table table-striped" >
+      <thead class="bg-warning">
+        <th >Product</th>
+        <th >Quantity</th>
+        <th >Price</th>
+        <th >Total</th>
+
+      </thead>
+      <tbody>
+     {% for i in orders %}
+        <tr class="border-top">
+        <td>{{i.p_id.p_name}}</td>
+        <td class="text-center">{{i.quantity}}</td>
+        <td>${{i.price}}</td>
+        <td>${{i.t_amount}}</td>
+      </tr>
+    {% endfor %}
+      </tbody>
+    </table>
+    <hr>
+    <h5 style="font-family: all;" class="text-right me-3">Total Price after Discount: ${{price|add:dis}} - {{dis}}</h5>
+    <h5 style="font-family: all;" class="text-right me-3">You Paid ${{price}}</h5>
+    <hr>
+    <div class="container text-center">
+        <form action="/store/bill" method="POST">
+            <input type="submit" class="btn btn-warning m-auto" value="Return to Homepage">
+            {% csrf_token %}
+        </form>
+        
+    </div>
+    </div>
+
+<style type="text/css">
+    td,th{
+        border: solid 1px;
+    }
+</style>
+
+{% endblock %}

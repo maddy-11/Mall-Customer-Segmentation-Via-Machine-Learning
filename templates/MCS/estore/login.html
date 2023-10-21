@@ -1,0 +1,51 @@
+{% extends 'estore/templates.html' %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+    <script type="text/javascript">
+    function myclick() {
+    document.getElementById("hide").className = "hide pt-3";
+}
+</script>
+
+
+
+{% if messages %}
+    {% for messages in messages %}
+        <div class="{{messages.tags}} pt-3" style="display: flex;justify-content: space-around;" id="hide">
+            <p>{{messages}} </p>
+            <p class="px-1 bg-white text-dark" onclick="myclick()" id="hide" style="cursor: pointer;">X</p>
+            
+
+        </div>
+    {% endfor %}
+{% endif %}
+
+<div class="mt-5 ">
+        
+    <div class="formm col-lg-6 col-11 my-5">
+    <div class="p-1 pb-5">
+    <form class="Sign-In-form" method="POST" action="/store/login">
+        {% csrf_token %}
+    <div class="mt-5 head">
+    <h1 id="title" class = "my-5 col-lg-6 bg-warning" >
+    Sign In
+    </h1>
+    </div>  
+    <div class = "row col-lg-12 " style=" justify-content:center;">
+    <input class = "my-2 col-lg-7 col-md-7 col-10" id="input2" type="text" name="uname" style="height: 40px;" placeholder="&nbsp;Enter Username">
+    <input class = "my-2 col-lg-7 col-md-7 col-10" id="input2" type="password" name="pass" placeholder="&nbsp;Enter Password" style="height: 40px;">
+    </div>
+
+    <div class="buttns mt-3 col-lg-7 col-md-5  col-13 m-auto">
+    <button class="btn btn-warning col-lg-5 col-md-5 col-5 fs-5" id="form_btn" type="submit" name="login" value="Sign In"toggle="tooltip" data-placement="top" title="Sign In" >Sign In</button>
+    <a class="btn btn-warning col-lg-6  col-md-5 col-6 fs-5" href="/store/register" id="form_btn" toggle="tooltip" data-placement="top" title="Register"> Register</a>
+        </div>
+        </form>
+                
+            </div>
+            </div>
+    </div>
+
+{% endblock %}

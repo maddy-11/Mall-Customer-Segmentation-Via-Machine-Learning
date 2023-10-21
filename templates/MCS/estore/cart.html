@@ -1,0 +1,120 @@
+  {% extends 'estore/templates.html' %}
+{% block title %}Cart{% endblock %}
+
+{% block content %} 
+<div class="container-fluid p-3 bg-light">
+  <h1 class="font">Shopping Cart <i class="fa fa-shopping-cart text-danger"></i></h1>
+  <hr>
+<div class="row" style="justify-content: space-around; flex-wrap: wrap;">
+  <div class="col-lg-8 col-md-10 p-2 border m-1">
+    <table width="100%">
+      <thead class="bg-warning " >
+        <th >Remove</th>
+        <th >Image</th>
+        <th >Product</th>
+        <th >Color</th>
+        <th >Quantity</th>
+        <th >Price</th>
+        <th >Total</th>
+
+      </thead>
+      <tbody>
+       
+       {% for i in context %}
+
+        <tr class="border-top">
+        <td class="text-center  " style="width: 10%;"><a href="delproduct/{{i.id}}"><i class="fa fa-trash fs-5 text-center text-danger fs-3"></i></a></td>
+        <td><img src="/static/images/{{i.p_id.p_image}}" class="img-thumbnail p-2"></td>
+        <td>{{i.p_id.p_name}}</td>
+        <td>{{i.color}}</td>
+        <td class="text-center">{{i.quantity}}</td>
+        <td>${{i.price}}</td>
+        <td>${{i.t_amount}}</td>
+      </tr>
+
+    {% endfor %}
+    <tr class="border-top border-dark">
+      <td style="border:none"></td>
+      <td style="border:none"></td>
+      <td style="border:none"></td>
+      <td style="border:none"></td>
+      <td style="border:none"></td>
+      <td>Total Price</td>
+      <td>${{sum}}</td>
+
+      </tr>
+      </tbody>
+    </table>
+  </div>
+  <div  class="col-lg-3 col-md-10 p-2 ">
+    <div class="border p-2">
+    <h2 class="text-center my-3">Have a Coupon?</h2>
+    <form method="POST" class="mb-3 m-auto row" a\action="#" style="justify-content:space-around;">
+      {% csrf_token %}
+      <input type="text" name="coupon_" placeholder="Your Coupon" id="coupon" class="col-lg-8 col-md-8 col-8 p-1">
+      
+    <input class="col-lg-3 col-md-3 col-3 btn btn-primary" id="member" type="submit" name="coupon"data-toggle="tooltip" data-placement="top" title="Get 25% Off!" value="Apply" >
+    </form>   
+  </div>
+  <div class="border p-2 mt-2">
+  
+  <div class="row" style="justify-content:center;">
+  <p class="col-lg-5 col-md-5 col-5">Total Price</p>
+  <p class="col-lg-5 col-md-5 col-5 text-end">${{sum}}</p>
+  <p class="col-lg-5 col-md-5 col-5">Discount</p>
+  <!-- --------------------------------- -->
+ 
+  <!-- ---------------------------------------- -->
+  <p class="col-lg-5 col-md-5 col-5 text-end">${{d}}</p>
+  <p class="col-lg-5 col-md-5 col-5">Final Price</p>
+  <p class="col-lg-5 col-md-5 col-5 text-end">${{f_price}}</p>
+</div>
+
+  </div>
+
+  
+
+  <a class=" btn btn-warning fs-5 mt-3 container" href="/store/checkout/"> Check Out</a> 
+</div>
+ </div>
+  </div>
+
+<!-- ------------------------------------- -->
+
+
+<style>
+  
+  .img-thumbnail{
+    border: none;
+    /*border-right: solid 1px silver;*/
+  }
+  th,td{
+/*    padding-left: 5px;*/
+    text-align: center;
+    border: solid;
+    border-color: rgb(120, 124, 126);
+  }
+  
+.bg-orange{
+background: darkorange;
+}  
+.center{
+  display: block;
+  justify-content: center;
+  margin: auto;
+}
+.img-thumbnail{height: 70px}
+@media only screen and (max-width: 600px){
+  th,td{
+    padding: 0.5;
+  }
+}
+@media only screen and (max-width: 430px){
+.img-thumbnail{height: 50px}
+}
+a{text-decoration: none;}
+a:hover;{text-decoration: none;}
+</style>
+
+
+{% endblock %}
